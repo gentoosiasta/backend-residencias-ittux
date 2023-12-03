@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  dbTec:
+    image: postgres:15.3
+    container_name: dbtec
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=dbTecUser
+      - POSTGRES_PASSWORD=b4ck3nd@T3c
+      - POSTGRES_DB=dbtec
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  
+  pdAdmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    depends_on:
+      - dbTec
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=dbtec@ittux.edu.mx
+      - PGADMIN_DEFAULT_PASSWORD=b4ck3nd@T3c
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+      - ./pgadmin:/certs/server.cert
+      - ./pgadmin:/certs/server.key
+      - ./pgadmin:/pgadmin4/servers.json
+
+  # nodejs:
+  #   image: node:lts-alpine3.18 
+  #   container_name: nodejs
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - dbTec
