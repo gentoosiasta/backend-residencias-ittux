@@ -57,5 +57,21 @@ const staffModel = {
             staff
         SET
             is_active = false
+    `,
+    countActive: `
+        SELECT
+            COUNT(*)
+        FROM
+            staff
+        WHERE
+            is_active = true
+    `,
+    countInactive: `
+        SELECT
+            COUNT(*)
+        FROM
+            staff
+        WHERE
+            is_active = false
     `
 }

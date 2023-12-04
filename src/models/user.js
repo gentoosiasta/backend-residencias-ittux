@@ -73,12 +73,6 @@ export const userModel = {
         WHERE
             id = $1
     `,
-    count: `
-        SELECT
-            COUNT(*)
-        FROM
-            users
-    `,
     countActive: `
         SELECT
             COUNT(*)

@@ -14,13 +14,11 @@ export const usersList = async (req = request, res = response) => {
             });
         }
 
-        const countUsers = await db.query(userModel.countUsers);
         const countActive = await db.query(userModel.countActive);
         const countInactive = await db.query(userModel.countInactive);
 
         res.json({
             users: [...rows],
-            countUsers: countUsers.rows[0].count,
             countActive: countActive.rows[0].count,
             countInactive: countInactive.rows[0].count
         });
@@ -166,7 +164,7 @@ export const restoreUser = async (req = request, res = response) => {
         const {rowCount} = await db.query(userModel.restore, [id]);
         if (rowCount === 0) {
             return res.status(500).json({
-                msg: 'User not deleted'
+                msg: 'User not restored'
             });
         }
     } catch (error) {
