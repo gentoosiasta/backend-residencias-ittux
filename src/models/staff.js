@@ -1,4 +1,4 @@
-const staffModel = {
+export const staffModel = {
     findById: `
         SELECT
             id,
