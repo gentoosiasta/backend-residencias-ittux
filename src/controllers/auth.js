@@ -1,7 +1,7 @@
 import { request, response } from 'express';
 import bcrypt from 'bcrypt';
-import { validate } from 'uuid';
 import jwt from 'jsonwebtoken';
+import { validate } from 'uuid';
 import db from '../configs/db.js';
 import { envs } from '../configs/envs.js';
 import { userModel } from '../models/user.js';
@@ -91,5 +91,4 @@ export const registerUser = async (req = request, res = response) => {
             error: error
         });
     }
-
 }

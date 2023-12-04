@@ -1,4 +1,18 @@
 export const userModel = {
+    findAll: `
+        SELECT
+            id,
+            username,
+            staff,
+            role,
+            is_active
+        FROM
+            users
+        ORDER BY
+            username
+        LIMIT
+            $1 OFFSET $2
+    `,
     findByUsername: `
         SELECT
             id,
@@ -50,5 +64,43 @@ export const userModel = {
             is_active = false
         WHERE
             id = $1
+    `,
+    restore: `
+        UPDATE
+            users
+        SET
+            is_active = true
+        WHERE
+            id = $1
+    `,
+    count: `
+        SELECT
+            COUNT(*)
+        FROM
+            users
+    `,
+    countActive: `
+        SELECT
+            COUNT(*)
+        FROM
+            users
+        WHERE
+            is_active = true
+    `,
+    countInactive: `
+        SELECT
+            COUNT(*)
+        FROM
+            users
+        WHERE
+            is_active = false
+    `,
+    updatePassword: `
+        UPDATE
+            users
+        SET
+            password = $1
+        WHERE
+            id = $2
     `
 }
