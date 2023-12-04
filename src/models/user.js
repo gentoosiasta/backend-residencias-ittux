@@ -32,4 +32,23 @@ export const userModel = {
         VALUES
             ($1, $2, $3, $4, $5)
     `,
+    update: `
+        UPDATE
+            users
+        SET
+            username = $1,
+            password = $2,
+            staff = $3,
+            role = $4
+        WHERE
+            id = $5
+    `,
+    delete: `
+        UPDATE
+            users
+        SET
+            is_active = false
+        WHERE
+            id = $1
+    `
 }
