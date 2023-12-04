@@ -2,3 +2,5 @@ node_modules/
 postgres/
 pgadmin/
 .env
+.DS_Store
+bruno_collection/
