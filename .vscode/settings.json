@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "backend-tec",
+            "group": "Ittux",
+            "database": "dbtec",
+            "username": "dbTecUser"
+        }
+    ]
+}
