@@ -1,4 +1,20 @@
 export const staffModel = {
+    findAll: `
+        SELECT
+            id,
+            name,
+            lastname,
+            rfc,
+            curp,
+            department,
+            is_active
+        FROM
+            staff
+        ORDER BY
+            name
+        LIMIT
+            $1 OFFSET $2
+        `,
     findById: `
         SELECT
             id,
@@ -57,6 +73,16 @@ export const staffModel = {
             staff
         SET
             is_active = false
+        WHERE
+            id = $1
+    `,
+    restore: `
+        UPDATE
+            staff
+        SET
+            is_active = true
+        WHERE
+            id = $1
     `,
     countActive: `
         SELECT

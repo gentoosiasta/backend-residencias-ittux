@@ -30,7 +30,6 @@ export const userModel = {
         SELECT
             id,
             username,
-            password,
             staff,
             role,
             is_active

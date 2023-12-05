@@ -9,6 +9,8 @@ export const subjectModel = {
             subjects
         ORDER BY
             program, career, subject
+        LIMIT
+            $1 OFFSET $2
     `,
     findById: `
         SELECT
@@ -35,6 +37,8 @@ export const subjectModel = {
             program = $1
         ORDER BY
             career, subject
+        LIMIT
+            $2 OFFSET $3
     `,
     findByCareer: `
         SELECT
@@ -48,6 +52,8 @@ export const subjectModel = {
             career = $1
         ORDER BY
             program, subject
+        LIMIT
+            $2 OFFSET $3
     `,
     findBySubject: `
         SELECT
@@ -61,6 +67,22 @@ export const subjectModel = {
             subject = $1
         ORDER BY
             program, career
+        LIMIT
+            $2 OFFSET $3
+    `,
+    findDuplicates: `
+        SELECT
+            subject,
+            career,
+            program
+        FROM
+            subjects
+        WHERE
+            subject = $1
+            AND
+            career = $2
+            AND
+            program = $3
     `,
     count: `
         SELECT

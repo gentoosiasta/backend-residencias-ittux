@@ -2,6 +2,7 @@ import { request, response } from "express";
 import bcrypt from "bcrypt";
 import {validate} from "uuid";
 import db from "../configs/db.js";
+import {userModel} from "../models/user.js";
 
 export const usersList = async (req = request, res = response) => {
     const { limit = 10, offset = 0 } = req.query;

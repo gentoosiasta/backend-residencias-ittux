@@ -1,7 +1,7 @@
 import { request, response } from "express";
-import db from "../database/config";
-import staffModel from "../models/staff";
-import { validate } from "../helpers/validate";
+import { validate } from "uuid";
+import db from "../configs/db.js";
+import {staffModel} from "../models/staff.js";
 
 export const staffList = async (req = request, res = response) => {
     const { limit = 10, offset = 0 } = req.query;
@@ -134,7 +134,7 @@ export const deleteStaff = async (req = request, res = response) => {
             msg: 'Invalid ID'
         });
     }
-
+    
     try {
         const {rowCount} = await db.query(staffModel.delete, [id]);
         if (rowCount === 0) {
@@ -142,6 +142,10 @@ export const deleteStaff = async (req = request, res = response) => {
                 msg: 'Staff not deleted'
             });
         }
+
+        res.json({
+            msg: 'Staff deleted'
+        })
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -165,6 +169,10 @@ export const restoreStaff = async (req = request, res = response) => {
                 msg: 'Staff not restored'
             });
         }
+
+        res.json({
+            msg: 'Staff restored'
+        })
     } catch (error) {
         console.log(error);
         res.status(500).json({

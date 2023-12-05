@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { envs } from './configs/envs.js';
 import authRouter from './routes/auth.js';
+import userRouter from './routes/user.js';
+import staffRouter from './routes/staff.js';
+import subjectRouter from './routes/subject.js';
 
 export class Server {
     constructor() {
@@ -11,6 +14,9 @@ export class Server {
         //** Paths */
         this.basePath = '/api/v1';
         this.authPath = `${this.basePath}/auth`;
+        this.userPath = `${this.basePath}/users`;
+        this.staffPath = `${this.basePath}/staffs`;
+        this.subjectPath = `${this.basePath}/subjects`;
 
         this.middlewares();
         this.routes();
@@ -25,6 +31,9 @@ export class Server {
     //** Routes */
     routes() {
         this.app.use(this.authPath, authRouter);
+        this.app.use(this.userPath, userRouter);
+        this.app.use(this.staffPath, staffRouter);
+        this.app.use(this.subjectPath, subjectRouter);
     }
 
     listen() {
